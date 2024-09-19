@@ -26,3 +26,10 @@ h1 {
     font-size: 18px;
     line-height: 1.6;
 }
+
+/* mr-panel styles */
+.my-panel {
+    background-color: lightgrey;
+    padding: 20px;
+    border-radius: 10px;
+}
