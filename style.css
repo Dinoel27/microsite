@@ -1,14 +1,14 @@
 /* External CSS File */
 
 /* Body styles */
-body {
+.body {
     margin: 0;
     overflow: auto;
     font-family: Arial, sans-serif;
 }
 
 /* mr-text title styles */
-mr-text.title {
+.title {
     font-size: 2em;
     font-weight: bold;
     text-align: center;
@@ -17,7 +17,7 @@ mr-text.title {
 }
 
 /* mr-text paragraph styles */
-mr-text.paragraph {
+.paragraph {
     margin-bottom: 20px;
     font-size: 1em;
     line-height: 1.6;
