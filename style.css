@@ -1,0 +1,28 @@
+/* External CSS File */
+
+/* Body styles */
+body {
+    margin: 0;
+    overflow: auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Title styles */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Content container */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Paragraph styles */
+.paragraph {
+    margin-bottom: 40px;
+    font-size: 18px;
+    line-height: 1.6;
+}

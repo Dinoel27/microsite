@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>One Page Scrollable Website</title>
+    <!-- Include mr.js library -->
+    <script src="./dist/mr.js"></script>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Title -->
+    <h1>Welcome to My Website</h1>
+
+    <!-- Content Paragraphs -->
+    <div class="content" id="content">
+        <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi vitae metus hendrerit venenatis. Donec quis nulla sit amet eros aliquet pharetra.</p>
+        <p class="paragraph">Praesent vel urna nec quam commodo sodales. Integer et dolor et libero tincidunt auctor. Nullam a velit a neque posuere bibendum.</p>
+        <p class="paragraph">Vivamus eu sapien sit amet diam finibus lacinia. Curabitur interdum sapien in ante porta, ac volutpat massa finibus.</p>
+    </div>
+
+    <!-- mr-app Initialization -->
+    <mr-app debug="true">
+
+        <!-- mr-entity to host 3D models, anchored to a fixed position -->
+        <mr-entity data-comp-anchor="type:fixed;" id="model-container" data-position="-1 1.5 -1">
+
+            <!-- 3D Models -->
+            <mr-model id="model1" src="./models/model1.glb" data-position="0 0 0" data-rotation="0 0 0"></mr-model>
+            <mr-model id="model2" src="./models/model2.glb" data-position="0 0 0" data-rotation="0 0 0"></mr-model>
+            <mr-model id="model3" src="./models/model3.glb" data-position="0 0 0" data-rotation="0 0 0"></mr-model>
+
+        </mr-entity>
+
+    </mr-app>
+
+    <!-- JavaScript to handle scrolling and model visibility -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get references to the models
+            const model1 = document.getElementById('model1');
+            const model2 = document.getElementById('model2');
+            const model3 = document.getElementById('model3');
+
+            // Ensure models are loaded before accessing object3D
+            const modelsLoaded = [false, false, false];
+
+            model1.addEventListener('model-loaded', function () {
+                modelsLoaded[0] = true;
+                initializeModels();
+            });
+
+            model2.addEventListener('model-loaded', function () {
+                modelsLoaded[1] = true;
+                initializeModels();
+            });
+
+            model3.addEventListener('model-loaded', function () {
+                modelsLoaded[2] = true;
+                initializeModels();
+            });
+
+            function initializeModels() {
+                if (modelsLoaded.every(loaded => loaded)) {
+                    // Set initial visibility
+                    model1.object3D.visible = true;
+                    model2.object3D.visible = false;
+                    model3.object3D.visible = false;
+
+                    // Add scroll event listener
+                    window.addEventListener('scroll', onScroll);
+
+                    // Initial check
+                    onScroll();
+                }
+            }
+
+            function onScroll() {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const contentHeight = document.getElementById('content').offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollFraction = scrollTop / (contentHeight - windowHeight);
+
+                // Update model visibility based on scrollFraction
+                if (scrollFraction < 0.33) {
+                    model1.object3D.visible = true;
+                    model2.object3D.visible = false;
+                    model3.object3D.visible = false;
+                } else if (scrollFraction < 0.66) {
+                    model1.object3D.visible = false;
+                    model2.object3D.visible = true;
+                    model3.object3D.visible = false;
+                } else {
+                    model1.object3D.visible = false;
+                    model2.object3D.visible = false;
+                    model3.object3D.visible = true;
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
