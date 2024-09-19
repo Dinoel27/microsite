@@ -7,24 +7,21 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Title styles */
-h1 {
+/* mr-text title styles */
+mr-text.title {
+    font-size: 2em;
+    font-weight: bold;
     text-align: center;
     margin-top: 20px;
+    display: block;
 }
 
-/* Content container */
-.content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Paragraph styles */
-.paragraph {
-    margin-bottom: 40px;
-    font-size: 18px;
+/* mr-text paragraph styles */
+mr-text.paragraph {
+    margin-bottom: 20px;
+    font-size: 1em;
     line-height: 1.6;
+    display: block;
 }
 
 /* mr-panel styles */
@@ -32,4 +29,7 @@ h1 {
     background-color: lightgrey;
     padding: 20px;
     border-radius: 10px;
+    width: 40vw;
+    height: 60vh;
+    overflow-y: auto;
 }
