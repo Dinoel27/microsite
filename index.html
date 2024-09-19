@@ -98,11 +98,11 @@
                 const scrollFraction = scrollTop / (contentHeight - windowHeight);
 
                 // Update model visibility based on scrollFraction
-                if (scrollFraction < 0.33) {
+                if (scrollFraction < 0.13) {
                     model1.object3D.visible = true;
                     model2.object3D.visible = false;
                     model3.object3D.visible = false;
-                } else if (scrollFraction < 0.66) {
+                } else if (scrollFraction < 0.33) {
                     model1.object3D.visible = false;
                     model2.object3D.visible = true;
                     model3.object3D.visible = false;
