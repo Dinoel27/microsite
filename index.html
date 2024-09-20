@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Improved Scrollable Website with 3D Models</title>
+    <meta charset="utf-8">
+    <title>One Page Scrollable Website</title>
+    <!-- Include mr.js library -->
+    <!-- <script src="./dist/mr.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
+
     <!-- mr-app Initialization -->
     <mr-app debug="true">
 
@@ -17,15 +20,9 @@
         <mr-entity data-comp-anchor="type:fixed;" id="model-container" data-position="0 0 0">
 
             <!-- 3D Models -->
-            <mr-model id="model1" src="./models/model1.glb" data-position="-0.75 0 0" data-rotation="180 0 0"
-                visible="false"></mr-model>
-            <mr-model id="model2" src="./models/model2.glb" data-position="-0.75 0 0" data-rotation="180 0 0"
-                visible="false"></mr-model>
-            <mr-model id="model3" src="./models/model3.glb" data-position="-0.75 0 0" data-rotation="180 0 0"
-                visible="false"></mr-model>
-
-            <!-- Loading Indicator -->
-            <mr-text class="loading-text" value="Loading Models..." data-position="0 0 1"></mr-text>
+            <mr-model id="model1" src="./models/model1.glb" data-position="-0.75 0 0" data-rotation="180 0 0" visible="false"></mr-model>
+            <mr-model id="model2" src="./models/model2.glb" data-position="-0.75 0 0" data-rotation="180 0 0" visible="false"></mr-model>
+            <mr-model id="model3" src="./models/model3.glb" data-position="-0.75 0 0" data-rotation="180 0 0" visible="false"></mr-model>
 
             <!-- mr-panel with light grey background -->
             <mr-panel class="my-panel" data-position="0 0 0">
@@ -33,57 +30,35 @@
                 <mr-text class="title" value="Welcome to My Website"></mr-text>
 
                 <!-- Content Paragraphs using mr-text -->
-                <mr-text class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.</mr-text>
-                <mr-text class="paragraph">Praesent vel urna nec quam commodo sodales. Integer et dolor et libero
-                    tincidunt auctor.
-                
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nulla
-                    sit amet eros aliquet pharetra.</mr-text>
-                <mr-text class="paragraph">Vivamus eu sapien sit amet diam finibus lacinia. Curabitur interdum sapien
-                    in ante porta, ac volutpat massa finibus.</mr-text>
+                <mr-text class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi vitae metus hendrerit venenatis. Donec quis nulla sit amet eros aliquet pharetra. Vivamus eu sapien sit amet diam finibus lacinia. Curabitur interdum sapien in ante porta, ac volutpat massa finibus.</mr-text>
+
+                <mr-text class="paragraph">Praesent vel urna nec quam commodo sodales. Integer et dolor et libero tincidunt auctor. Nullam a velit a neque posuere bibendum. Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta.</mr-text>
+
+                <mr-text class="paragraph">Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.</mr-text>
             </mr-panel>
 
         </mr-entity>
+
     </mr-app>
 
     <!-- JavaScript to handle scrolling and model visibility -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Get references to the models
             const model1 = document.getElementById('model1');
             const model2 = document.getElementById('model2');
             const model3 = document.getElementById('model3');
+
+            // Get reference to the panel
             const panel = document.querySelector('.my-panel');
-            const loadingText = document.querySelector('.loading-text');
+
+            // Ensure models are loaded before accessing object3D
+            const modelsLoaded = [false, false, false];
 
             const models = [model1, model2, model3];
-            let modelsLoaded = [false, false, false];
 
-            // Event listeners for model loading
             models.forEach((model, index) => {
-                model.addEventListener('model-loaded', () => {
+                model.addEventListener('model-loaded', function () {
                     modelsLoaded[index] = true;
                     checkAllModelsLoaded();
                 });
@@ -91,48 +66,46 @@
 
             function checkAllModelsLoaded() {
                 if (modelsLoaded.every(Boolean)) {
-                    loadingText.setAttribute('visible', 'false');
+                    // Set initial visibility
                     model1.setAttribute('visible', 'true');
-                    initializeScrollListener();
+                    model2.setAttribute('visible', 'false');
+                    model3.setAttribute('visible', 'false');
+
+                    // Add scroll event listener to the panel
+                    panel.addEventListener('scroll', onScroll);
+
+                    // Initial check
+                    onScroll();
                 }
             }
 
-            function initializeScrollListener() {
-                let isScrolling;
-                panel.addEventListener('scroll', () => {
-                    window.clearTimeout(isScrolling);
-                    isScrolling = setTimeout(() => handleScroll(), 100);
-                });
-                handleScroll(); // Initial check on load
-            }
-
-            function handleScroll() {
+            function onScroll() {
                 const scrollTop = panel.scrollTop;
-                const scrollHeight = panel.scrollHeight;
+                const contentHeight = panel.scrollHeight;
                 const panelHeight = panel.clientHeight;
-                const scrollFraction = scrollTop / (scrollHeight - panelHeight);
+                const scrollFraction = scrollTop / (contentHeight - panelHeight);
 
-                models.forEach((model, index) => {
-                    const modelVisibility = (scrollFraction > index * 0.33 && scrollFraction <= (index + 1) * 0.33);
-                    if (modelVisibility) {
-                        fadeModelIn(model);
-                    } else {
-                        fadeModelOut(model);
-                    }
-                });
-            }
+                // Debugging: Log scrollFraction
+                console.log('Scroll Fraction:', scrollFraction);
 
-            function fadeModelIn(model) {
-                model.setAttribute('animation', 'property: opacity; to: 1; dur: 500');
-                model.setAttribute('visible', 'true');
-            }
-
-            function fadeModelOut(model) {
-                model.setAttribute('animation', 'property: opacity; to: 0; dur: 500');
-                setTimeout(() => model.setAttribute('visible', 'false'), 500);
+                // Update model visibility based on scrollFraction
+                if (scrollFraction < 0.33) {
+                    model1.setAttribute('visible', 'true');
+                    model2.setAttribute('visible', 'false');
+                    model3.setAttribute('visible', 'false');
+                } else if (scrollFraction < 0.66) {
+                    model1.setAttribute('visible', 'false');
+                    model2.setAttribute('visible', 'true');
+                    model3.setAttribute('visible', 'false');
+                } else {
+                    model1.setAttribute('visible', 'false');
+                    model2.setAttribute('visible', 'false');
+                    model3.setAttribute('visible', 'true');
+                }
             }
         });
     </script>
+
 </body>
 
 </html>
