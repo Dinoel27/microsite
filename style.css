@@ -9,7 +9,7 @@ body {
 
 /* mr-text title styles */
 .title {
-    font-size: 2.5em;
+    font-size: 2em;
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
@@ -20,11 +20,11 @@ body {
 /* mr-text paragraph styles */
 .paragraph {
     margin-bottom: 20px;
-    font-size: 1.1em;
-    line-height: 1.8;
+    font-size: 1em;
+    line-height: 1.6;
     display: block;
-    width: 85%;
-    text-align: justify;
+    width: 90%;
+    text-align: left;
     margin: 20px auto;
     color: #444;
 }
@@ -32,17 +32,10 @@ body {
 /* mr-panel styles */
 .my-panel {
     background-color: #f2f2f2;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
-    width: 90vw;
-    height: 75vh;
+    width: 60vw;
+    height: 70vh;
     overflow-y: auto;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Loading text styles */
-.loading-text {
-    font-size: 1.5em;
-    color: #888;
-    text-align: center;
 }
