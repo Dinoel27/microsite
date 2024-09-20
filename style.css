@@ -9,30 +9,40 @@ body {
 
 /* mr-text title styles */
 .title {
-    font-size: 2em;
+    font-size: 2.5em;
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
     display: block;
+    color: #333;
 }
 
 /* mr-text paragraph styles */
 .paragraph {
     margin-bottom: 20px;
-    font-size: 1em;
-    line-height: 1.6;
+    font-size: 1.1em;
+    line-height: 1.8;
     display: block;
-    width: 90%;
-    text-align: center;
+    width: 85%;
+    text-align: justify;
     margin: 20px auto;
+    color: #444;
 }
 
 /* mr-panel styles */
 .my-panel {
-    background-color: lightgrey;
-    padding: 20px;
+    background-color: #f2f2f2;
+    padding: 30px;
     border-radius: 10px;
-    width: 100vw;
-    height: 80vh;
+    width: 90vw;
+    height: 75vh;
     overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading text styles */
+.loading-text {
+    font-size: 1.5em;
+    color: #888;
+    text-align: center;
 }
